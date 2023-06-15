@@ -11,6 +11,9 @@ public class Times {
     @Column(name = "times_id")
     private Long id;
 
+    @Column(nullable = false)
     private NameOfTimes nameOfTimes;
+
+    @Temporal(TemporalType.TIME)
     private LocalTime time;
 }

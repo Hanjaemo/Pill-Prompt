@@ -11,11 +11,16 @@ public class Pill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 20, nullable = false, unique = true)
     private String name;
+
+    @Column(nullable = false)
     private int quantity;
 
     @OneToMany
     @JoinColumn(name = "times_id")
     private List<Times> times;
+
+    @Column(nullable = false)
     private boolean isTaken;
 }
