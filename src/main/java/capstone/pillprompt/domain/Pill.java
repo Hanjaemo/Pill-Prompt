@@ -13,6 +13,9 @@ public class Pill {
 
     private String name;
     private int quantity;
+
+    @OneToMany
+    @JoinColumn(name = "times_id")
     private List<Times> times;
     private boolean isTaken;
 }
