@@ -11,6 +11,6 @@ public class Times {
 
     @Id @GeneratedValue
     private Long id;
-    private Meal meal;
+    private NameOfTimes nameOfTimes;
     private LocalTime time;
 }

@@ -1,6 +1,6 @@
 package capstone.pillprompt.domain;
 
-public enum Meal {
+public enum NameOfTimes {
 
     MORNING, LUNCH, DINNER
 }

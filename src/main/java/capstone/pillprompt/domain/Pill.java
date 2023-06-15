@@ -15,5 +15,4 @@ public class Pill {
     private int quantity;
     private List<Times> times;
     private boolean isTaken;
-
 }
