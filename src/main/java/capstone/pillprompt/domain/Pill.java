@@ -18,7 +18,7 @@ public class Pill {
     private int quantity;
 
     @OneToMany
-    @JoinColumn(name = "times_id")
+    @JoinColumn(name = "id")
     private List<Times> times;
 
     @Column(nullable = false)
