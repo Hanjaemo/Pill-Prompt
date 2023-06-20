@@ -13,19 +13,21 @@ import java.time.LocalTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Times {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "times_id")
     private Long id;
 
-    @Column(nullable = false)
-    private NameOfTimes nameOfTimes;
+    @Column(nullable = false, unique = true)
+    @Enumerated(EnumType.STRING)
+    private NameOfTimes name;
 
     @Temporal(TemporalType.TIME)
     private LocalTime time;
 
     @Builder
-    public Times(NameOfTimes nameOfTimes, LocalTime time) {
-        this.nameOfTimes = nameOfTimes;
+    public Times(NameOfTimes name, LocalTime time) {
+        this.name = name;
         this.time = time;
     }
 }
