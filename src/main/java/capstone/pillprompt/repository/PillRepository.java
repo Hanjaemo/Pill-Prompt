@@ -25,10 +25,9 @@ public class PillRepository {
         return em.createQuery("select p from Pill p", Pill.class)
                 .getResultList();
     }
-    
+
     public void delete(Long id) {
         Pill pill = em.find(Pill.class, id);
         em.remove(pill);
     }
-    
 }

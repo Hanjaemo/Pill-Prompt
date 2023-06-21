@@ -26,4 +26,11 @@ public class Pill {
 
     @Column(nullable = false)
     private boolean isTaken;
+
+    public Pill update(Pill newPill) {
+        this.name = newPill.getName();
+        this.quantity = newPill.getQuantity();
+        this.takings = newPill.getTakings();
+        return this;
+    }
 }
