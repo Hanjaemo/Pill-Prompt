@@ -2,14 +2,17 @@ package capstone.pillprompt.domain;
 
 import capstone.pillprompt.dto.PillDto;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Pill {
 
     @Id
@@ -37,7 +40,7 @@ public class Pill {
         this.isTaken = isTaken;
     }
 
-    public Pill update(Pill newPill) {
+    public Pill update(PillDto newPill) {
         this.name = newPill.getName();
         this.quantity = newPill.getQuantity();
         this.takings = newPill.getTakings();
