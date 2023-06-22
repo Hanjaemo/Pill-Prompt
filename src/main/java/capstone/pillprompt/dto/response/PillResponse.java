@@ -1,7 +1,7 @@
 package capstone.pillprompt.dto.response;
 
 import capstone.pillprompt.domain.Pill;
-import capstone.pillprompt.domain.Taking;
+import capstone.pillprompt.domain.Times;
 import lombok.Builder;
 import lombok.Getter;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class PillResponse {
     private Long id;
     private String name;
     private int quantity;
-    private List<Taking> takings = new ArrayList<>();
+    private List<Times> times = new ArrayList<>();
     private boolean isTaken;
 
     public static PillResponse of(Pill pill) {
@@ -22,7 +22,7 @@ public class PillResponse {
                 .id(pill.getId())
                 .name(pill.getName())
                 .quantity(pill.getQuantity())
-                .takings(pill.getTakings())
+                .times(pill.getTimes())
                 .isTaken(pill.isTaken())
                 .build();
     }

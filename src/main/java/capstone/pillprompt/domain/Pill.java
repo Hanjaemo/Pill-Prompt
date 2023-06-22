@@ -53,6 +53,7 @@ public class Pill {
         return Pill.builder()
                 .name(pillDto.getName())
                 .quantity(pillDto.getQuantity())
+                .times(pillDto.getTimes())
                 .isTaken(pillDto.isTaken())
                 .build();
     }
