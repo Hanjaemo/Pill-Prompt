@@ -13,7 +13,7 @@ public abstract class TakingTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "times_id")
+    @Column(name = "taking_time_id")
     private Long id;
 
     @Column(nullable = false, unique = true)

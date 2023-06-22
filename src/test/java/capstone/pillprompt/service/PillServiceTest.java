@@ -29,7 +29,7 @@ class PillServiceTest {
 
     @Test
     @DisplayName("")
-    void save() throws Exception {
+    void save() {
         // given
         TakingTime time1 = new Morning("아침", LocalTime.of(8, 00));
         TakingTime time2 = new Dinner("저녁", LocalTime.of(18, 30));
