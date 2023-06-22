@@ -1,17 +1,15 @@
 package capstone.pillprompt.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalTime;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Times {
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn
+public abstract class TakingTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,14 +17,15 @@ public class Times {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    @Enumerated(EnumType.STRING)
-    private NameOfTimes name;
+    private String name;
 
     @Temporal(TemporalType.TIME)
     private LocalTime time;
 
-    @Builder
-    public Times(NameOfTimes name, LocalTime time) {
+    public TakingTime() {
+    }
+
+    public TakingTime(String name, LocalTime time) {
         this.name = name;
         this.time = time;
     }

@@ -28,14 +28,14 @@ public class Pill {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "pill_id")
-    private List<Times> times = new ArrayList<>();
+    private List<TakingTime> times = new ArrayList<>();
 
 
     @Column(nullable = false)
     private boolean isTaken;
 
     @Builder
-    public Pill(String name, int quantity, List<Times> times, boolean isTaken) {
+    public Pill(String name, int quantity, List<TakingTime> times, boolean isTaken) {
         this.name = name;
         this.quantity = quantity;
         this.times = times;

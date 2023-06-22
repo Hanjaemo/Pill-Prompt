@@ -1,6 +1,6 @@
 package capstone.pillprompt.dto;
 
-import capstone.pillprompt.domain.Times;
+import capstone.pillprompt.domain.TakingTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,6 +15,6 @@ public class PillDto {
 
     private String name;
     private int quantity;
-    private List<Times> times = new ArrayList<>();
+    private List<TakingTime> times = new ArrayList<>();
     private boolean isTaken;
 }
