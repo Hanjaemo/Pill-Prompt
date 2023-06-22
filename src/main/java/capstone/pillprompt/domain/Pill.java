@@ -26,24 +26,26 @@ public class Pill {
     @Column(nullable = false)
     private int quantity;
 
-    @OneToMany(mappedBy = "pill", cascade = CascadeType.ALL)
-    private List<Taking> takings = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "pill_id")
+    private List<Times> times = new ArrayList<>();
+
 
     @Column(nullable = false)
     private boolean isTaken;
 
     @Builder
-    public Pill(String name, int quantity, List<Taking> takings, boolean isTaken) {
+    public Pill(String name, int quantity, List<Times> times, boolean isTaken) {
         this.name = name;
         this.quantity = quantity;
-        this.takings = takings;
+        this.times = times;
         this.isTaken = isTaken;
     }
 
     public Pill update(PillDto newPill) {
         this.name = newPill.getName();
         this.quantity = newPill.getQuantity();
-        this.takings = newPill.getTakings();
+        this.times = newPill.getTimes();
         return this;
     }
 
