@@ -13,8 +13,9 @@ public class PillRepository {
 
     private final EntityManager em;
 
-    public void save(Pill pill) {
+    public Long save(Pill pill) {
         em.persist(pill);
+        return pill.getId();
     }
 
     public Pill findById(Long id) {

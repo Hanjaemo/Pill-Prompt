@@ -28,9 +28,9 @@ public class PillService {
         return PillResponse.of(pill);
     }
 
-    public void save(PillDto pillDto) {
+    public Long save(PillDto pillDto) {
         Pill pill = Pill.of(pillDto);
-        pillRepository.save(pill);
+        return pillRepository.save(pill);
     }
 
     public void update(Long id, PillDto pillDto) {
