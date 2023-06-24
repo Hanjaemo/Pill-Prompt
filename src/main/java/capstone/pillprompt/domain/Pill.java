@@ -27,7 +27,7 @@ public class Pill {
     private int quantity;
 
     @ElementCollection
-    @CollectionTable(name = "taking_time",
+    @CollectionTable(name = "name_of_time",
             joinColumns = @JoinColumn(name = "pill_id"))
     @Column(name = "time_name")
     @Enumerated(EnumType.STRING)
