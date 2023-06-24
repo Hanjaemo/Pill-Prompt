@@ -33,9 +33,9 @@ public class PillService {
         return pillRepository.save(pill);
     }
 
-    public void update(Long id, PillDto pillDto) {
+    public void update(Long id, PillDto newPill) {
         Pill pill = getPillById(id);
-        pill.update(pillDto);
+        pill.update(newPill);
     }
 
     public void delete(Long id) {

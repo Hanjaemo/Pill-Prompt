@@ -1,6 +1,7 @@
 package capstone.pillprompt.dto;
 
-import capstone.pillprompt.domain.TakingTime;
+import capstone.pillprompt.domain.NameOfTime;
+import capstone.pillprompt.dto.request.PillRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,6 +16,15 @@ public class PillDto {
 
     private String name;
     private int quantity;
-    private List<TakingTime> times = new ArrayList<>();
+    private List<NameOfTime> times = new ArrayList<>();
     private boolean isTaken;
+
+    public static PillDto of(PillRequest request) {
+        return PillDto.builder()
+                .name(request.getName())
+                .quantity(request.getQuantity())
+                .times(request.getTimes())
+                .isTaken(false)
+                .build();
+    }
 }
