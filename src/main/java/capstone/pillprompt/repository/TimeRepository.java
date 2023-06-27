@@ -6,8 +6,6 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalTime;
-
 @Repository
 @RequiredArgsConstructor
 public class TimeRepository {
