@@ -38,28 +38,28 @@ public class PillApiController {
     @ResponseStatus(OK)
     @GetMapping("/{id}")
     @Operation(summary = "약 단건 조회", description = "현재 보관중인 약들 중 해당 id의 약을 조회한다.")
-    public PillResponse findOne(@PathVariable Long id) {
+    public PillResponse findOne(@PathVariable final Long id) {
         return pillService.findById(id);
     }
 
     @ResponseStatus(CREATED)
     @PostMapping
     @Operation(summary = "약 등록", description = "새로운 약을 보관함에 등록한다.")
-    public Long save(@RequestBody @Valid PillRequest request) {
+    public Long save(@RequestBody @Valid final PillRequest request) {
         return pillService.save(PillDto.of(request));
     }
 
     @ResponseStatus(OK)
     @PatchMapping("/{id}")
     @Operation(summary = "약 수정", description = "현재 보관중인 약들 중 해당 id의 약 정보를 수정한다.")
-    public void update(@PathVariable Long id, @RequestBody @Valid PillRequest request) {
+    public void update(@PathVariable final Long id, @RequestBody @Valid final PillRequest request) {
         pillService.update(id, PillDto.of(request));
     }
 
     @ResponseStatus(NO_CONTENT)
     @DeleteMapping("/{id}")
     @Operation(summary = "약 삭제", description = "현재 보관중인 약들 중 해당 id의 약을 삭제한다.")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable final Long id) {
         pillService.delete(id);
     }
 }

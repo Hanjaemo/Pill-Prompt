@@ -17,13 +17,13 @@ public class TimeApiController {
     private final TimeService timeService;
 
     @GetMapping("/{name}")
-    public TakingTime findByName(@PathVariable String name) {
+    public TakingTime findByName(@PathVariable final String name) {
         NameOfTime nameOfTime = NameOfTime.valueOf(name.toUpperCase());
         return timeService.findByName(nameOfTime);
     }
 
     @PatchMapping("/morning")
-    public void updateMorning(@RequestBody TimeDto time) {
+    public void updateMorning(@RequestBody final TimeDto time) {
         LocalTime localTime = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
         timeService.update(NameOfTime.MORNING, localTime);
     }
