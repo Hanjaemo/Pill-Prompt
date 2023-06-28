@@ -17,8 +17,9 @@ public class TimeApiController {
     private final TimeService timeService;
 
     @GetMapping("/{name}")
-    public TakingTime findByName(@PathVariable NameOfTime name) {
-        return timeService.findByName(name);
+    public TakingTime findByName(@PathVariable String name) {
+        NameOfTime nameOfTime = NameOfTime.valueOf(name.toUpperCase());
+        return timeService.findByName(nameOfTime);
     }
 
     @PatchMapping("/morning")
