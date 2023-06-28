@@ -26,16 +26,18 @@ public class Pill {
     @Column(nullable = false)
     private int quantity;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "pill_id")
-    private List<TakingTime> times = new ArrayList<>();
-
+    @ElementCollection
+    @CollectionTable(name = "name_of_time",
+            joinColumns = @JoinColumn(name = "pill_id"))
+    @Column(name = "time_name")
+    @Enumerated(EnumType.STRING)
+    private List<NameOfTime> times = new ArrayList<>();
 
     @Column(nullable = false)
     private boolean isTaken;
 
     @Builder
-    public Pill(String name, int quantity, List<TakingTime> times, boolean isTaken) {
+    public Pill(String name, int quantity, List<NameOfTime> times, boolean isTaken) {
         this.name = name;
         this.quantity = quantity;
         this.times = times;
