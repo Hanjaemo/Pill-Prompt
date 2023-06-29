@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -18,8 +19,8 @@ public class PillRepository {
         return pill.getId();
     }
 
-    public Pill findById(Long id) {
-        return em.find(Pill.class, id);
+    public Optional<Pill> findById(Long id) {
+        return Optional.ofNullable(em.find(Pill.class, id));
     }
 
     public List<Pill> findAll() {
@@ -28,7 +29,7 @@ public class PillRepository {
     }
 
     public void delete(Long id) {
-        Pill pill = em.find(Pill.class, id);
+        Optional<Pill> pill = findById(id);
         em.remove(pill);
     }
 }
