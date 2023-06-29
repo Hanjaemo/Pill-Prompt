@@ -14,9 +14,15 @@ public class ErrorResponse {
     private String message;
     private String errorCode;
 
-    public ErrorResponse(ErrorCode errorCode) {
+    public ErrorResponse(CustomException e) {
+        this.status = e.getStatus();
+        this.message = e.getMessage();
+        this.errorCode = e.getErrorCode();
+    }
+
+    public ErrorResponse(ErrorCode errorCode, String message) {
         this.status = errorCode.getStatus();
-        this.message = errorCode.getMessage();
+        this.message = message;
         this.errorCode = errorCode.toString();
     }
 }
