@@ -5,7 +5,6 @@ import capstone.pillprompt.domain.Pill;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -23,7 +22,7 @@ public class PillResponse {
     private int quantity;
 
     @Schema(description = "복용 시간")
-    private List<NameOfTime> times = new ArrayList<>();
+    private List<NameOfTime> times;
 
     @Schema(description = "복용 여부", defaultValue = "false")
     private boolean isTaken;
