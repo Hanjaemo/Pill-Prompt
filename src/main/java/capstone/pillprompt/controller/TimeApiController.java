@@ -22,10 +22,10 @@ public class TimeApiController {
         return timeService.findByName(nameOfTime);
     }
 
-    @PatchMapping("/morning")
-    public void updateMorning(@RequestBody final TimeDto time) {
+    @PatchMapping("/{name}/edit")
+    public void updateMorning(@PathVariable final String name, @RequestBody final TimeDto time) {
         LocalTime localTime = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
-        timeService.update(NameOfTime.MORNING, localTime);
+        NameOfTime nameOfTime = NameOfTime.valueOf(name.toUpperCase());
+        timeService.update(nameOfTime, localTime);
     }
-
 }
