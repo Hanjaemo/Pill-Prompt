@@ -45,8 +45,15 @@ public class PillService {
     }
 
     private Pill getPillById(Long id) {
-        return pillRepository.findById(id)
-                .orElseThrow(() -> new PillException(ErrorCode.NOT_FOUND_PILL));
+        Pill pill = pillRepository.findById(id);
+        if (isNull(pill)) {
+            throw new PillException(ErrorCode.NOT_FOUND_PILL);
+        }
+        return pill;
+    }
+
+    private boolean isNull(Pill pill) {
+        return pill == null;
     }
 
     private static List<PillResponse> toResponses(List<Pill> pills) {

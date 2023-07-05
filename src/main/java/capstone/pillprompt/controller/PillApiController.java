@@ -5,12 +5,8 @@ import capstone.pillprompt.dto.request.PillRequest;
 import capstone.pillprompt.dto.response.PillResponse;
 import capstone.pillprompt.service.PillService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,10 +23,6 @@ public class PillApiController {
     @ResponseStatus(OK)
     @GetMapping
     @Operation(summary = "약 전체 조회", description = "현재 보관중인 모든 약 목록을 조회한다.")
-    /*@ApiResponse(
-            responseCode = "200",
-            description = "약 전체 조회 성공",
-            content = @Content(schema = @Schema(implementation = PillResponse.class)))*/
     public List<PillResponse> findAll() {
         return pillService.findAll();
     }
