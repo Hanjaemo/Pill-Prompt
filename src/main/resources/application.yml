@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/PillPrompt
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/pillprompt?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: jm00
 
   jpa:
     hibernate:
