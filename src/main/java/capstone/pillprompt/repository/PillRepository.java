@@ -24,7 +24,7 @@ public class PillRepository {
                 .getResultList();
     }
 
-    public List<Pill> findByTime(String time) {
+    public List<Pill> findByTime(NameOfTime time) {
         return em.createQuery("select p from Pill p join p.times t where t = :timeName", Pill.class)
                 .setParameter("timeName", time)
                 .getResultList();

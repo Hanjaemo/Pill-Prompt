@@ -1,5 +1,6 @@
 package capstone.pillprompt.controller;
 
+import capstone.pillprompt.domain.NameOfTime;
 import capstone.pillprompt.dto.PillDto;
 import capstone.pillprompt.dto.request.PillRequest;
 import capstone.pillprompt.dto.response.PillResponse;
@@ -25,6 +26,14 @@ public class PillApiController {
     @Operation(summary = "약 전체 조회", description = "현재 보관중인 모든 약 목록을 조회한다.")
     public List<PillResponse> findAll() {
         return pillService.findAll();
+    }
+
+    @ResponseStatus(OK)
+    @GetMapping("/take/{time}")
+    @Operation(summary = "복용 시간에 해당하는 약 전체 조회", description = "복용 시간(아침, 점심, 저녁)에 해당하는 약 목록을 조회한다.")
+    public List<PillResponse> findByTime(@PathVariable String time) {
+        NameOfTime nameOfTime = NameOfTime.valueOf(time.toUpperCase());
+        return pillService.findByTime(nameOfTime);
     }
 
     @ResponseStatus(OK)

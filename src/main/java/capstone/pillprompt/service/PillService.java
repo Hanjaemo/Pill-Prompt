@@ -1,5 +1,6 @@
 package capstone.pillprompt.service;
 
+import capstone.pillprompt.domain.NameOfTime;
 import capstone.pillprompt.domain.Pill;
 import capstone.pillprompt.dto.PillDto;
 import capstone.pillprompt.dto.response.PillResponse;
@@ -21,6 +22,11 @@ public class PillService {
 
     public List<PillResponse> findAll() {
         List<Pill> pills = pillRepository.findAll();
+        return toResponses(pills);
+    }
+
+    public List<PillResponse> findByTime(NameOfTime time) {
+        List<Pill> pills = pillRepository.findByTime(time);
         return toResponses(pills);
     }
 
