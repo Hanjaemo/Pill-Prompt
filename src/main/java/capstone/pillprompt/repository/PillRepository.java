@@ -1,12 +1,12 @@
 package capstone.pillprompt.repository;
 
+import capstone.pillprompt.domain.NameOfTime;
 import capstone.pillprompt.domain.Pill;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -19,13 +19,19 @@ public class PillRepository {
         return pill.getId();
     }
 
-    public Pill findById(Long id) {
-        return em.find(Pill.class, id);
-    }
-
     public List<Pill> findAll() {
         return em.createQuery("select p from Pill p", Pill.class)
                 .getResultList();
+    }
+
+    public List<Pill> findByTime(String time) {
+        return em.createQuery("select p from Pill p join p.times t where t = :timeName", Pill.class)
+                .setParameter("timeName", time)
+                .getResultList();
+    }
+
+    public Pill findById(Long id) {
+        return em.find(Pill.class, id);
     }
 
     public void delete(Long id) {
