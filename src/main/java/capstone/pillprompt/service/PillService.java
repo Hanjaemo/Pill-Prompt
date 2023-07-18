@@ -1,5 +1,6 @@
 package capstone.pillprompt.service;
 
+import capstone.pillprompt.domain.NameOfTime;
 import capstone.pillprompt.domain.Pill;
 import capstone.pillprompt.dto.PillDto;
 import capstone.pillprompt.dto.response.PillResponse;
@@ -24,6 +25,11 @@ public class PillService {
         return toResponses(pills);
     }
 
+    public List<PillResponse> findByTime(NameOfTime time) {
+        List<Pill> pills = pillRepository.findByTime(time);
+        return toResponses(pills);
+    }
+
     public PillResponse findById(Long id) {
         Pill pill = getPillById(id);
         return PillResponse.of(pill);
@@ -42,6 +48,13 @@ public class PillService {
     public void delete(Long id) {
         Pill pill = getPillById(id);
         pillRepository.delete(pill.getId());
+    }
+
+    public void dispose(NameOfTime time) {
+        List<Pill> pills = pillRepository.findByTime(time);
+        for (Pill pill : pills) {
+            pill.disposed();
+        }
     }
 
     private Pill getPillById(Long id) {
