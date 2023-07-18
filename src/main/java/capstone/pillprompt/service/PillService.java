@@ -50,6 +50,13 @@ public class PillService {
         pillRepository.delete(pill.getId());
     }
 
+    public void dispose(NameOfTime time) {
+        List<Pill> pills = pillRepository.findByTime(time);
+        for (Pill pill : pills) {
+            pill.disposed();
+        }
+    }
+
     private Pill getPillById(Long id) {
         Pill pill = pillRepository.findById(id);
         if (isNull(pill)) {

@@ -51,6 +51,11 @@ public class Pill {
         return this;
     }
 
+    public Pill disposed() {
+        this.quantity--;
+        return this;
+    }
+
     public static Pill of(PillDto pillDto) {
         return Pill.builder()
                 .name(pillDto.getName())
