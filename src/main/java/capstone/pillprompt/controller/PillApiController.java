@@ -29,14 +29,6 @@ public class PillApiController {
     }
 
     @ResponseStatus(OK)
-    @GetMapping("/{time}/take")
-    @Operation(summary = "복용 시간에 해당하는 약 전체 조회", description = "복용 시간(아침, 점심, 저녁)에 해당하는 약 목록을 조회한다.")
-    public List<PillResponse> findByTime(@PathVariable String time) {
-        NameOfTime nameOfTime = NameOfTime.valueOf(time.toUpperCase());
-        return pillService.findByTime(nameOfTime);
-    }
-
-    @ResponseStatus(OK)
     @GetMapping("/{id}")
     @Operation(summary = "약 단건 조회", description = "현재 보관중인 약들 중 해당 id의 약을 조회한다.")
     public PillResponse findOne(@PathVariable final Long id) {
@@ -64,7 +56,17 @@ public class PillApiController {
         pillService.delete(id);
     }
 
-    @PatchMapping("/{time}/dispose")
+    @ResponseStatus(OK)
+    @GetMapping("/by-time/{time}")
+    @Operation(summary = "복용 시간에 해당하는 약 전체 조회", description = "복용 시간(아침, 점심, 저녁)에 해당하는 약 목록을 조회한다.")
+    public List<PillResponse> findByTime(@PathVariable String time) {
+        NameOfTime nameOfTime = NameOfTime.valueOf(time.toUpperCase());
+        return pillService.findByTime(nameOfTime);
+    }
+
+    @ResponseStatus(OK)
+    @PatchMapping("/dispose/{time}")
+    @Operation(summary = "약 배출", description = "각 복용 시간에 약의 수량이 1씩 감소한다.")
     public void dispose(@PathVariable String time) {
         NameOfTime nameOfTime = NameOfTime.valueOf(time.toUpperCase());
         pillService.dispose(nameOfTime);

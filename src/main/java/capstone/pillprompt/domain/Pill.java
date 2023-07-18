@@ -24,6 +24,7 @@ public class Pill {
     private String name;
 
     @Column(nullable = false)
+
     private int quantity;
 
     @ElementCollection
@@ -52,6 +53,9 @@ public class Pill {
     }
 
     public Pill disposed() {
+        if (this.quantity == 0) {
+            return this;
+        }
         this.quantity--;
         return this;
     }
