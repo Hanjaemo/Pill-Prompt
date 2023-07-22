@@ -3,8 +3,11 @@ package capstone.pillprompt.dto.response;
 import capstone.pillprompt.domain.NameOfTime;
 import capstone.pillprompt.domain.Pill;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
 import lombok.Builder;
 import lombok.Getter;
+import org.hibernate.annotations.ColumnDefault;
+
 import java.util.List;
 
 @Getter
@@ -24,8 +27,14 @@ public class PillResponse {
     @Schema(description = "복용 시간")
     private List<NameOfTime> times;
 
-    @Schema(description = "복용 여부", defaultValue = "false")
-    private boolean isTaken;
+    @Schema(description = "복용 여부(아침)", example = "true")
+    private boolean taken_morning;
+
+    @Schema(description = "복용 여부(아침)", example = "false")
+    private boolean taken_lunch;
+
+    @Schema(description = "복용 여부(아침)", example = "false")
+    private boolean taken_dinner;
 
     public static PillResponse of(Pill pill) {
         return PillResponse.builder()
@@ -33,7 +42,9 @@ public class PillResponse {
                 .name(pill.getName())
                 .quantity(pill.getQuantity())
                 .times(pill.getTimes())
-                .isTaken(pill.isTaken())
+                .taken_morning(pill.isTaken_morning())
+                .taken_lunch(pill.isTaken_lunch())
+                .taken_dinner(pill.isTaken_dinner())
                 .build();
     }
 }
