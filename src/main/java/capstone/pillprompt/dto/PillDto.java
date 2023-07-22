@@ -17,14 +17,12 @@ public class PillDto {
     private String name;
     private int quantity;
     private List<NameOfTime> times = new ArrayList<>();
-    private boolean isTaken;
 
     public static PillDto of(PillRequest request) {
         return PillDto.builder()
                 .name(request.getName())
                 .quantity(request.getQuantity())
                 .times(request.getTimes())
-                .isTaken(false)
                 .build();
     }
 }

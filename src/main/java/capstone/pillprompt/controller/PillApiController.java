@@ -66,9 +66,17 @@ public class PillApiController {
 
     @ResponseStatus(OK)
     @PatchMapping("/dispose/{time}")
-    @Operation(summary = "약 배출", description = "각 복용 시간에 약의 수량이 1씩 감소한다.")
+    @Operation(summary = "약 배출", description = "각 복용 시간에 해당하는 약의 수량이 1씩 감소한다.")
     public void dispose(@PathVariable String time) {
         NameOfTime nameOfTime = NameOfTime.valueOf(time.toUpperCase());
         pillService.dispose(nameOfTime);
+    }
+
+    @ResponseStatus(OK)
+    @PatchMapping("/take/{time}")
+    @Operation(summary = "약 복용", description = "각 복용 시간에 해당하는 약의 복용 여부를 true 값으로 수정한다.")
+    public void take(@PathVariable String time) {
+        NameOfTime nameOfTime = NameOfTime.valueOf(time.toUpperCase());
+        pillService.taken(nameOfTime);
     }
 }

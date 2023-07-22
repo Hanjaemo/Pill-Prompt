@@ -6,10 +6,13 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,7 +27,6 @@ public class Pill {
     private String name;
 
     @Column(nullable = false)
-
     private int quantity;
 
     @ElementCollection
@@ -35,14 +37,22 @@ public class Pill {
     private List<NameOfTime> times = new ArrayList<>();
 
     @Column(nullable = false)
-    private boolean isTaken;
+    @ColumnDefault("false")
+    private boolean taken_morning;
+
+    @Column(nullable = false)
+    @ColumnDefault("false")
+    private boolean taken_lunch;
+
+    @Column(nullable = false)
+    @ColumnDefault("false")
+    private boolean taken_dinner;
 
     @Builder
-    public Pill(String name, int quantity, List<NameOfTime> times, boolean isTaken) {
+    public Pill(String name, int quantity, List<NameOfTime> times) {
         this.name = name;
         this.quantity = quantity;
         this.times = times;
-        this.isTaken = isTaken;
     }
 
     public Pill update(PillDto newPill) {
@@ -60,12 +70,26 @@ public class Pill {
         return this;
     }
 
+    public Pill taken(NameOfTime time) {
+        switch (time) {
+            case MORNING:
+                this.taken_morning = true;
+                break;
+            case LUNCH:
+                this.taken_lunch = true;
+                break;
+            case DINNER:
+                this.taken_dinner = true;
+                break;
+        }
+        return this;
+    }
+
     public static Pill of(PillDto pillDto) {
         return Pill.builder()
                 .name(pillDto.getName())
                 .quantity(pillDto.getQuantity())
                 .times(pillDto.getTimes())
-                .isTaken(pillDto.isTaken())
                 .build();
     }
 }

@@ -7,12 +7,15 @@ import capstone.pillprompt.dto.response.PillResponse;
 import capstone.pillprompt.exception.ErrorCode;
 import capstone.pillprompt.exception.domain.PillException;
 import capstone.pillprompt.repository.PillRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -20,13 +23,14 @@ public class PillService {
 
     private final PillRepository pillRepository;
 
+    @Transactional(readOnly = true)
     public List<PillResponse> findAll() {
         List<Pill> pills = pillRepository.findAll();
         return toResponses(pills);
     }
 
     public List<PillResponse> findByTime(NameOfTime time) {
-        List<Pill> pills = pillRepository.findByTime(time);
+        List<Pill> pills = getPillByTime(time);
         return toResponses(pills);
     }
 
@@ -51,9 +55,16 @@ public class PillService {
     }
 
     public void dispose(NameOfTime time) {
-        List<Pill> pills = pillRepository.findByTime(time);
+        List<Pill> pills = getPillByTime(time);
         for (Pill pill : pills) {
             pill.disposed();
+        }
+    }
+
+    public void taken(NameOfTime time) {
+        List<Pill> pills = getPillByTime(time);
+        for (Pill pill : pills) {
+            pill.taken(time);
         }
     }
 
@@ -63,6 +74,10 @@ public class PillService {
             throw new PillException(ErrorCode.NOT_FOUND_PILL);
         }
         return pill;
+    }
+
+    private List<Pill> getPillByTime(NameOfTime time) {
+        return pillRepository.findByTime(time);
     }
 
     private boolean isNull(Pill pill) {
