@@ -25,5 +25,5 @@ logging:
 openai:
   model: "gpt-3.5-turbo"
   api:
-    key: "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"
+    key: ""
     url: "https://api.openai.com/v1/chat/completions"
