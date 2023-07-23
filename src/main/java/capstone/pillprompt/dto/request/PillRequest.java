@@ -19,7 +19,7 @@ public class PillRequest {
     private String name;
 
     @Schema(description = "수량", example = "1")
-    @Min(value = 1, message = "수량은 최소 1개 이상이어야 합니다.")
+    @Min(value = 0, message = "수량은 최소 0개 이상이어야 합니다.")
     private int quantity;
 
     @Schema(description = "복용 시간")
