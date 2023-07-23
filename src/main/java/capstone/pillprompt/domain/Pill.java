@@ -2,6 +2,7 @@ package capstone.pillprompt.domain;
 
 import capstone.pillprompt.dto.PillDto;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,6 +28,7 @@ public class Pill {
     private String name;
 
     @Column(nullable = false)
+    @Min(value = 0, message = "수량은 최소 0개 이상이어야 합니다.")
     private int quantity;
 
     @ElementCollection
