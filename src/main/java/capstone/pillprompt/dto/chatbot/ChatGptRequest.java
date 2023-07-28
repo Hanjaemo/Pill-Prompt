@@ -1,6 +1,5 @@
-package capstone.pillprompt.dto.request;
+package capstone.pillprompt.dto.chatbot;
 
-import capstone.pillprompt.dto.Message;
 import lombok.Data;
 
 import java.util.ArrayList;

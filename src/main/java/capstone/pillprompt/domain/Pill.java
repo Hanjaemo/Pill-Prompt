@@ -1,6 +1,6 @@
 package capstone.pillprompt.domain;
 
-import capstone.pillprompt.dto.PillDto;
+import capstone.pillprompt.dto.pill.PillDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.AccessLevel;

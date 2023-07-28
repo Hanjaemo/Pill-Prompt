@@ -1,4 +1,4 @@
-package capstone.pillprompt.dto.request;
+package capstone.pillprompt.dto.pill.request;
 
 import capstone.pillprompt.domain.NameOfTime;
 import io.swagger.v3.oas.annotations.media.Schema;

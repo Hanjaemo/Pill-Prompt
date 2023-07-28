@@ -1,6 +1,5 @@
-package capstone.pillprompt.dto.response;
+package capstone.pillprompt.dto.chatbot;
 
-import capstone.pillprompt.dto.Message;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

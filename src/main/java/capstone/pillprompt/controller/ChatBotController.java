@@ -1,7 +1,7 @@
 package capstone.pillprompt.controller;
 
-import capstone.pillprompt.dto.request.ChatGptRequest;
-import capstone.pillprompt.dto.response.ChatGptResponse;
+import capstone.pillprompt.dto.chatbot.ChatGptRequest;
+import capstone.pillprompt.dto.chatbot.ChatGptResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

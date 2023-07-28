@@ -1,7 +1,7 @@
-package capstone.pillprompt.dto;
+package capstone.pillprompt.dto.pill;
 
 import capstone.pillprompt.domain.NameOfTime;
-import capstone.pillprompt.dto.request.PillRequest;
+import capstone.pillprompt.dto.pill.request.PillRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

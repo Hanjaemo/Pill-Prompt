@@ -1,4 +1,4 @@
-package capstone.pillprompt;
+package capstone.pillprompt.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
