@@ -2,8 +2,8 @@ package capstone.pillprompt.service;
 
 import capstone.pillprompt.domain.NameOfTime;
 import capstone.pillprompt.domain.Pill;
-import capstone.pillprompt.dto.PillDto;
-import capstone.pillprompt.dto.response.PillResponse;
+import capstone.pillprompt.dto.pill.PillDto;
+import capstone.pillprompt.dto.pill.response.PillResponse;
 import capstone.pillprompt.exception.ErrorCode;
 import capstone.pillprompt.exception.domain.PillException;
 import capstone.pillprompt.repository.PillRepository;

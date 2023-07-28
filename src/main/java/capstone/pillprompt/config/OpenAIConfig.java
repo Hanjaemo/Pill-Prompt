@@ -1,4 +1,4 @@
-package capstone.pillprompt;
+package capstone.pillprompt.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

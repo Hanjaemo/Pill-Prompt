@@ -1,9 +1,9 @@
 package capstone.pillprompt.controller;
 
 import capstone.pillprompt.domain.NameOfTime;
-import capstone.pillprompt.dto.PillDto;
-import capstone.pillprompt.dto.request.PillRequest;
-import capstone.pillprompt.dto.response.PillResponse;
+import capstone.pillprompt.dto.pill.PillDto;
+import capstone.pillprompt.dto.pill.request.PillRequest;
+import capstone.pillprompt.dto.pill.response.PillResponse;
 import capstone.pillprompt.service.PillService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -79,4 +79,6 @@ public class PillApiController {
         NameOfTime nameOfTime = NameOfTime.valueOf(time.toUpperCase());
         pillService.taken(nameOfTime);
     }
+
+
 }
