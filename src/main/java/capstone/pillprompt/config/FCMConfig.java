@@ -13,10 +13,12 @@ import java.io.IOException;
 @Configuration
 public class FCMConfig {
 
+    private static final String SDK_KEY = "firebase/pillprompt-fe219-firebase-adminsdk-dqqrr-7a1d25a840.json";
+
     @Bean
     FirebaseMessaging firebaseMessaging() throws IOException {
         GoogleCredentials googleCredentials = GoogleCredentials
-                .fromStream(new ClassPathResource("firebase/pillprompt-d39a0-firebase-adminsdk-35p8m-03d5537509.json").getInputStream());
+                .fromStream(new ClassPathResource(SDK_KEY).getInputStream());
         FirebaseOptions firebaseOptions = FirebaseOptions.builder()
                 .setCredentials(googleCredentials).build();
         FirebaseApp app = FirebaseApp.initializeApp(firebaseOptions, "my-app");

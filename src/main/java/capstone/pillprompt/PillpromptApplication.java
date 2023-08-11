@@ -9,5 +9,4 @@ public class PillpromptApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PillpromptApplication.class, args);
 	}
-
 }
