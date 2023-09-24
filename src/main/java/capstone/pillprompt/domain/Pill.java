@@ -24,7 +24,7 @@ public class Pill {
     @Column(name = "pill_id")
     private Long id;
 
-    @Column(length = 20, nullable = false, unique = true)
+    @Column(length = 20, nullable = false)
     private String name;
 
     @Column(nullable = false)
@@ -49,6 +49,10 @@ public class Pill {
     @Column(nullable = false)
     @ColumnDefault("false")
     private boolean taken_dinner;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @Builder
     public Pill(String name, int quantity, List<NameOfTime> times) {
