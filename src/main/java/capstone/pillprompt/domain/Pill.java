@@ -60,7 +60,8 @@ public class Pill {
     public Pill update(PillDto newPill) {
         this.name = newPill.getName();
         this.quantity = newPill.getQuantity();
-        this.times = newPill.getTimes();
+        this.times.clear();
+        this.times.addAll(newPill.getTimes());
         return this;
     }
 
@@ -82,6 +83,21 @@ public class Pill {
                 break;
             case DINNER:
                 this.taken_dinner = true;
+                break;
+        }
+        return this;
+    }
+
+    public Pill takeCancel(NameOfTime time) {
+        switch (time) {
+            case MORNING:
+                this.taken_morning = false;
+                break;
+            case LUNCH:
+                this.taken_lunch = false;
+                break;
+            case DINNER:
+                this.taken_dinner = false;
                 break;
         }
         return this;

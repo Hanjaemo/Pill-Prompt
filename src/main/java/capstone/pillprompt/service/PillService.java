@@ -68,6 +68,11 @@ public class PillService {
         }
     }
 
+    public void takeCancel(Long id, NameOfTime time) {
+        Pill pill = pillRepository.findById(id);
+        pill.takeCancel(time);
+    }
+
     private Pill getPillById(Long id) {
         Pill pill = pillRepository.findById(id);
         if (isNull(pill)) {

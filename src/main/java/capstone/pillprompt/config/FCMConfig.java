@@ -13,7 +13,7 @@ import java.io.IOException;
 @Configuration
 public class FCMConfig {
 
-    private static final String SDK_KEY = "firebase/pillprompt-fe219-firebase-adminsdk-dqqrr-7a1d25a840.json";
+    private static final String SDK_KEY = "firebase/pillprompt-sdk.json";
 
     @Bean
     FirebaseMessaging firebaseMessaging() throws IOException {

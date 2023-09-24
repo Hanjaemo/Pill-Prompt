@@ -80,5 +80,11 @@ public class PillApiController {
         pillService.taken(nameOfTime);
     }
 
-
+    @ResponseStatus(OK)
+    @PatchMapping("/{id}/take-cancel/{time}")
+    @Operation(summary = "약 복용 취소", description = "해당 id에 대한 약의 복용 여부를 false 값으로 수정한다.")
+    public void takeCancel(@PathVariable Long id, @PathVariable String time) {
+        NameOfTime nameOfTime = NameOfTime.valueOf(time.toUpperCase());
+        pillService.takeCancel(id, nameOfTime);
+    }
 }
