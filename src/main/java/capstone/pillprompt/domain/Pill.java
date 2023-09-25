@@ -4,6 +4,7 @@ import capstone.pillprompt.dto.pill.PillDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,8 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class Pill {
 
     @Id
@@ -24,7 +27,7 @@ public class Pill {
     @Column(name = "pill_id")
     private Long id;
 
-    @Column(length = 20, nullable = false, unique = true)
+    @Column(length = 20, nullable = false)
     private String name;
 
     @Column(nullable = false)
@@ -50,12 +53,9 @@ public class Pill {
     @ColumnDefault("false")
     private boolean taken_dinner;
 
-    @Builder
-    public Pill(String name, int quantity, List<NameOfTime> times) {
-        this.name = name;
-        this.quantity = quantity;
-        this.times = times;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     public Pill update(PillDto newPill) {
         this.name = newPill.getName();
