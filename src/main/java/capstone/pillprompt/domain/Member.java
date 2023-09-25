@@ -1,14 +1,10 @@
 package capstone.pillprompt.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -30,7 +26,4 @@ public class Member {
 
     @Column(nullable = false)
     private String password;
-
-    @OneToMany(mappedBy = "member")
-    private List<Pill> pills = new ArrayList<>();
 }
