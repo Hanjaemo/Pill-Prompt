@@ -1,6 +1,7 @@
 package capstone.pillprompt.controller;
 
 import capstone.pillprompt.domain.NameOfTime;
+import capstone.pillprompt.domain.Pill;
 import capstone.pillprompt.dto.pill.PillDto;
 import capstone.pillprompt.dto.pill.request.PillRequest;
 import capstone.pillprompt.dto.pill.response.PillResponse;
@@ -39,14 +40,14 @@ public class PillApiController {
     @PostMapping
     @Operation(summary = "약 등록", description = "새로운 약을 보관함에 등록한다.")
     public Long save(@RequestBody @Valid final PillRequest request) {
-        return pillService.save(PillDto.of(request));
+        return pillService.save(Pill.of(request));
     }
 
     @ResponseStatus(OK)
     @PatchMapping("/{id}")
     @Operation(summary = "약 수정", description = "현재 보관중인 약들 중 해당 id의 약 정보를 수정한다.")
     public void update(@PathVariable final Long id, @RequestBody @Valid final PillRequest request) {
-        pillService.update(id, PillDto.of(request));
+        pillService.update(id, Pill.of(request));
     }
 
     @ResponseStatus(NO_CONTENT)

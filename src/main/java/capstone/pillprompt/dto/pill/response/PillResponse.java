@@ -19,8 +19,14 @@ public class PillResponse {
     @Schema(description = "이름", example = "감기약")
     private String name;
 
-    @Schema(description = "수량", example = "1")
-    private int quantity;
+    @Schema(description = "아침 수량", example = "1")
+    private int morningQuantity;
+
+    @Schema(description = "점심 수량", example = "1")
+    private int lunchQuantity;
+
+    @Schema(description = "저녁 수량", example = "1")
+    private int dinnerQuantity;
 
     @Schema(description = "복용 시간")
     private List<NameOfTime> times;
@@ -38,7 +44,9 @@ public class PillResponse {
         return PillResponse.builder()
                 .id(pill.getId())
                 .name(pill.getName())
-                .quantity(pill.getQuantity())
+                .morningQuantity(pill.getMorningQuantity())
+                .lunchQuantity(pill.getLunchQuantity())
+                .dinnerQuantity(pill.getDinnerQuantity())
                 .times(pill.getTimes())
                 .taken_morning(pill.isTaken_morning())
                 .taken_lunch(pill.isTaken_lunch())
