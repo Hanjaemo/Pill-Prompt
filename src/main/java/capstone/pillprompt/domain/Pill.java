@@ -1,6 +1,6 @@
 package capstone.pillprompt.domain;
 
-import capstone.pillprompt.dto.pill.PillDto;
+import capstone.pillprompt.dto.pill.request.PillRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.AccessLevel;
@@ -32,7 +32,15 @@ public class Pill {
 
     @Column(nullable = false)
     @Min(value = 0, message = "수량은 최소 0개 이상이어야 합니다.")
-    private int quantity;
+    private int morningQuantity;
+
+    @Column(nullable = false)
+    @Min(value = 0, message = "수량은 최소 0개 이상이어야 합니다.")
+    private int lunchQuantity;
+
+    @Column(nullable = false)
+    @Min(value = 0, message = "수량은 최소 0개 이상이어야 합니다.")
+    private int dinnerQuantity;
 
     @ElementCollection
     @CollectionTable(name = "name_of_time",
@@ -57,35 +65,45 @@ public class Pill {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    public Pill update(PillDto newPill) {
+    public Pill update(Pill newPill) {
         this.name = newPill.getName();
-        this.quantity = newPill.getQuantity();
+        this.morningQuantity = newPill.getMorningQuantity();
+        this.lunchQuantity = newPill.getLunchQuantity();
+        this.dinnerQuantity = newPill.getDinnerQuantity();
         this.times.clear();
         this.times.addAll(newPill.getTimes());
         return this;
     }
 
-    public Pill disposed() {
-        if (this.quantity == 0) {
-            return this;
+    public void disposed(NameOfTime time) {
+        if (time == NameOfTime.MORNING) {
+            if (this.morningQuantity == 0) {
+                return;
+            }
+            this.morningQuantity--;
+            return;
         }
-        this.quantity--;
-        return this;
+        if (time == NameOfTime.LUNCH) {
+            if (this.lunchQuantity == 0) {
+                return;
+            }
+            this.lunchQuantity--;
+            return;
+        }
+        if (time == NameOfTime.DINNER) {
+            if (this.dinnerQuantity == 0) {
+                return;
+            }
+            this.dinnerQuantity--;
+        }
     }
 
-    public Pill taken(NameOfTime time) {
+    public void taken(NameOfTime time) {
         switch (time) {
-            case MORNING:
-                this.taken_morning = true;
-                break;
-            case LUNCH:
-                this.taken_lunch = true;
-                break;
-            case DINNER:
-                this.taken_dinner = true;
-                break;
+            case MORNING -> this.taken_morning = true;
+            case LUNCH -> this.taken_lunch = true;
+            case DINNER -> this.taken_dinner = true;
         }
-        return this;
     }
 
     public Pill takeCancel(NameOfTime time) {
@@ -103,11 +121,13 @@ public class Pill {
         return this;
     }
 
-    public static Pill of(PillDto pillDto) {
+    public static Pill of(PillRequest pillRequest) {
         return Pill.builder()
-                .name(pillDto.getName())
-                .quantity(pillDto.getQuantity())
-                .times(pillDto.getTimes())
+                .name(pillRequest.getName())
+                .morningQuantity(pillRequest.getMorningQuantity())
+                .lunchQuantity(pillRequest.getLunchQuantity())
+                .dinnerQuantity(pillRequest.getDinnerQuantity())
+                .times(pillRequest.getTimes())
                 .build();
     }
 }

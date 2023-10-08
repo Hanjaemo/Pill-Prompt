@@ -39,12 +39,11 @@ public class PillService {
         return PillResponse.of(pill);
     }
 
-    public Long save(PillDto pillDto) {
-        Pill pill = Pill.of(pillDto);
+    public Long save(Pill pill) {
         return pillRepository.save(pill);
     }
 
-    public void update(Long id, PillDto newPill) {
+    public void update(Long id, Pill newPill) {
         Pill pill = getPillById(id);
         pill.update(newPill);
     }
@@ -57,7 +56,7 @@ public class PillService {
     public void dispose(NameOfTime time) {
         List<Pill> pills = getPillByTime(time);
         for (Pill pill : pills) {
-            pill.disposed();
+            pill.disposed(time);
         }
     }
 

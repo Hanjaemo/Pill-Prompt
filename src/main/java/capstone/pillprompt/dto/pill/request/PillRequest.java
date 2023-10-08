@@ -18,9 +18,17 @@ public class PillRequest {
     @Size(min = 1, max = 20, message = "약 이름의 글자수는 1 ~ 20 이어야 합니다.")
     private String name;
 
-    @Schema(description = "수량", example = "1")
+    @Schema(description = "아침 수량", example = "1")
     @Min(value = 0, message = "수량은 최소 0개 이상이어야 합니다.")
-    private int quantity;
+    private int morningQuantity;
+
+    @Schema(description = "점심 수량", example = "1")
+    @Min(value = 0, message = "수량은 최소 0개 이상이어야 합니다.")
+    private int lunchQuantity;
+
+    @Schema(description = "저녁 수량", example = "1")
+    @Min(value = 0, message = "수량은 최소 0개 이상이어야 합니다.")
+    private int dinnerQuantity;
 
     @Schema(description = "복용 시간")
     private List<NameOfTime> times = new ArrayList<>();
