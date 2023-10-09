@@ -22,12 +22,19 @@ public class ChatBotController {
     @Autowired
     private RestTemplate template;
 
-    @PostMapping
+    @GetMapping
     public String chat(@RequestParam("prompt") String prompt) {
-        ChatGptRequest chatGptRequest = new ChatGptRequest("gpt-3.5-turbo", prompt);
+        // create a request
+        ChatGptRequest chatGptRequest = new ChatGptRequest(model, prompt);
+
+        // call the api
         ChatGptResponse chatGptResponse = template.postForObject(apiURL, chatGptRequest, ChatGptResponse.class);
-        String result = chatGptResponse.getChoices().get(0).getMessage().getContent();
-        log.info("result = {}", result);
-        return result;
+
+        if (chatGptResponse == null || chatGptResponse.getChoices() == null || chatGptResponse.getChoices().isEmpty()) {
+            return "No response";
+        }
+
+        // return the first response
+        return chatGptResponse.getChoices().get(0).getMessage().getContent();
     }
 }
