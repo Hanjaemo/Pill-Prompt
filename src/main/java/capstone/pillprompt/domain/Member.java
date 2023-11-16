@@ -2,10 +2,7 @@ package capstone.pillprompt.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,8 +24,16 @@ public class Member {
     @Column(nullable = false)
     private String fcmToken;
 
+    @Column(nullable = false)
+    private boolean isOutModeActivate;
+
     public String updateToken(String fcmToken) {
         this.fcmToken = fcmToken;
         return this.fcmToken;
+    }
+
+    public boolean switchOutMode() {
+        isOutModeActivate = !isOutModeActivate;
+        return isOutModeActivate;
     }
 }

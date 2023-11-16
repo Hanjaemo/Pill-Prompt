@@ -56,7 +56,7 @@ public class PillService {
     public void dispose(NameOfTime time) {
         List<Pill> pills = getPillByTime(time);
         for (Pill pill : pills) {
-            pill.disposed(time);
+            pill.disposed(time, 1);
         }
     }
 

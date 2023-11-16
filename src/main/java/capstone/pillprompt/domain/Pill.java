@@ -75,26 +75,26 @@ public class Pill {
         return this;
     }
 
-    public void disposed(NameOfTime time) {
+    public void disposed(NameOfTime time, int quantityForDispose) {
         if (time == NameOfTime.MORNING) {
             if (this.morningQuantity == 0) {
                 return;
             }
-            this.morningQuantity--;
+            this.morningQuantity -= quantityForDispose;
             return;
         }
         if (time == NameOfTime.LUNCH) {
             if (this.lunchQuantity == 0) {
                 return;
             }
-            this.lunchQuantity--;
+            this.lunchQuantity -= quantityForDispose;
             return;
         }
         if (time == NameOfTime.DINNER) {
             if (this.dinnerQuantity == 0) {
                 return;
             }
-            this.dinnerQuantity--;
+            this.dinnerQuantity -= quantityForDispose;
         }
     }
 
