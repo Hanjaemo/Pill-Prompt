@@ -30,10 +30,14 @@ public class OutModeService {
         return member.switchOutMode();
     }
 
-    public void disposeForOutMode(NameOfTime time, int quantityForDispose) {
-        List<Pill> pills = getPillByTime(time);
-        for (Pill pill : pills) {
-            pill.disposed(time, quantityForDispose);
+    public void disposeForOutMode(List<NameOfTime> times, List<Integer> quantities) {
+        for (int i = 0; i < times.size(); i++) {
+            NameOfTime time = times.get(i);
+            Integer quantity = quantities.get(i);
+            List<Pill> pills = getPillByTime(time);
+            for (Pill pill : pills) {
+                pill.disposed(time, quantity);
+            }
         }
     }
 

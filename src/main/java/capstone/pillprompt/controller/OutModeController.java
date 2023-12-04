@@ -5,12 +5,14 @@ import static org.springframework.http.HttpStatus.OK;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import capstone.pillprompt.domain.NameOfTime;
+import capstone.pillprompt.dto.OutModeRequest;
 import capstone.pillprompt.service.OutModeService;
 import lombok.RequiredArgsConstructor;
 
@@ -34,9 +36,8 @@ public class OutModeController {
     }
 
     @ResponseStatus(OK)
-    @PatchMapping("/dispose/{time}")
-    public void disposeForOutMode(@PathVariable String time, @RequestParam("quantity") int quantityForDispose) {
-        NameOfTime nameOfTime = NameOfTime.valueOf(time.toUpperCase());
-        outModeService.disposeForOutMode(nameOfTime, quantityForDispose);
+    @PatchMapping("/dispose")
+    public void disposeForOutMode(@RequestBody OutModeRequest request) {
+        outModeService.disposeForOutMode(request.getTimes(), request.getQuantities());
     }
 }
